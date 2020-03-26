@@ -14,3 +14,15 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+
+assets are included in pubspec.yaml
+
+
+Progress from Last week - made UI widgets that can be used later 
+  - image container that fits the image
+  - a gallery
+  - a contact list
+
+run in android studio / vscode or from the terminal $ flutter run
