@@ -37,6 +37,8 @@ class SignUpActivity : AppCompatActivity() {
         val email = email_signup.text.toString()
         val password = password_signup.text.toString()
 
+
+
         when {
             TextUtils.isEmpty(fullName) -> Toast.makeText(this, "Full name is required", Toast.LENGTH_LONG).show()
             TextUtils.isEmpty(userName) -> Toast.makeText(this, "User Name is required", Toast.LENGTH_LONG).show()
@@ -51,10 +53,13 @@ class SignUpActivity : AppCompatActivity() {
                 progressDialog.setCanceledOnTouchOutside(false)
                 progressDialog.show()
 
-
                 val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
-                mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener{task ->
+                Toast.makeText(this, email, Toast.LENGTH_LONG).show()
+                Toast.makeText(this, password, Toast.LENGTH_LONG).show()
+
+
+                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
+
                         if (task.isSuccessful) {
 
                             saveUserInfo(fullName, userName, email, progressDialog)
@@ -89,7 +94,7 @@ class SignUpActivity : AppCompatActivity() {
         userMap["image"] = "https://firebasestorage.googleapis.com/v0/b/link-670ca.appspot.com/o/Default%20Images%2Fprofile.png?alt=media&token=22afe054-8783-4fc3-9a71-e0a3f9ca0cd8"
 
         usersRef.child(currentUserID).setValue(userMap)
-            .addOnCompleteListener{ task ->
+            .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     progressDialog.dismiss()
                     Toast.makeText(this, "Account has been created successfully", Toast.LENGTH_LONG).show()
