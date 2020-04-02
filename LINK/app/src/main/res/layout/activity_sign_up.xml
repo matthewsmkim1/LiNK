@@ -90,6 +90,7 @@
         android:textSize="17dp"
         android:textColor="@android:color/black"
         />
+
     <Button
         android:id="@+id/signin_link_btn"
         android:layout_width="match_parent"
