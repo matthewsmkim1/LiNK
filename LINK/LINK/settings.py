@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'groups',
     'journal.apps.JournalConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
