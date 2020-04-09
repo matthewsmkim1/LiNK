@@ -9,6 +9,8 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.hashers import BCryptSHA256PasswordHasher as bcrypt
 from PIL import Image
 
+
+
 # Create your models here.
 
 

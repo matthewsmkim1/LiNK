@@ -16,14 +16,6 @@ class LinkGroupCreationForm(ModelForm):
         widgets = {}
 
 
-class LinkGroupJoinForm(ModelForm):
-
-    bkey = forms.TextInput()
-
-    class Meta:
-        model = LinkGroup
-        fields = [
-            "group_name",
-        ]
-        widgets = {}
-
+class LinkGroupJoinForm(forms.Form):
+    group_name = forms.CharField()
+    key = forms.CharField()

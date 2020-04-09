@@ -36,12 +36,18 @@ def create_group(request):
             key = randomString()
             encoded = key.encode()
             hashed = bcrypt.hashpw(encoded, salt)
-            group_creation_form.bkey = hashed
-            group_creation_form.members.add(request.user)
-            group_creation_form.save()
+
+            new_group = LinkGroup.objects.create(
+                group_name=group_creation_form.cleaned_data['group_name'],
+                group_description=group_creation_form.cleaned_data['group_description'],
+                bkey=hashed
+            )
+            user = Profile.objects.get(user=request.user)
+            new_group.members.add(user)
+            new_group.save()
             messages.success(
                 request, f"This is your group's join key. Make sure to keep it somewhere safe! \n {key} \n \
-                 If you want to add someone to the group, give them the key and the group name\n {group_creation_form.cleaned_data['group_name']}")
+                 \n If you want to add someone to the group, give them the key and the group name\n {group_creation_form.cleaned_data['group_name']}")
             return redirect('profile')
 
         # return redirect('/show_group)
@@ -80,7 +86,7 @@ def join_group(request):
     if request.method == "POST":
         group_join_form = LinkGroupJoinForm(request.POST)
         if group_join_form.is_valid():
-            key = group_join_form.cleaned_data['bkey']
+            key = group_join_form.cleaned_data['key']
             group_name = group_join_form.cleaned_data['group_name']
             group = LinkGroup.objects.get(group_name=group_name)
 
@@ -90,7 +96,8 @@ def join_group(request):
                     request, f"You have been successfully added to the group {group_name}!")
                 return redirect('profile')
             else:
-                messages.failure(request, f"Sorry, that key is not correct")
+                messages.failure(
+                    request, f"Sorry, that key and or group name is not correct")
                 group_join_form = LinkGroupJoinForm()
                 context = {
                     "group_join_form": group_join_form
