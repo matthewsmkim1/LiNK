@@ -12,29 +12,23 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'journal/main.css' %}">
 
-    {% if title %}
-        <title>Django Journal - {{ title }}</title>
-    {% else %}
-        <title>Django Journal</title>
-    {% endif %}
+    <title>LiNK</title>
 </head>
 <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-        <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'journal-home' %}">Django Journal</a>
+        <div class="container-fluid">
+          <a class="navbar-brand mr-4" href="{% url 'journal-home' %}">LiNK</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'journal-home' %}">Home</a>
-              <a class="nav-item nav-link" href="{% url 'journal-about' %}">About</a>
+              <!-- <a class="nav-item nav-link" href="{% url 'journal-about' %}">Groups</a> -->
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
               {% else %}
@@ -46,9 +40,34 @@
         </div>
       </nav>
     </header>
-    <main role="main" class="container">
+
+    <main role="main" class="container-fluid">
       <div class="row">
-        <div class="col-md-8">
+          <div class="col-md-3">
+            <div class="content-section">
+              <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Garrett - Karyo
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Levine - Karyo</a>
+                  <a class="dropdown-item" href="#">Garrett - Finley</a>
+                </div>
+              </div>
+
+              <p class='text-muted'>
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-light"><a href="#">Search</a></li>
+                  <li class="list-group-item list-group-item-light"><a href="#">Photos</a></li>
+                  <li class="list-group-item list-group-item-light"><a href="#">Videos</a></li>
+                  <li class="list-group-item list-group-item-light"><a href="#">Documents</a></li>
+                  <li class="list-group-item list-group-item-light"><a href="#">Members</a></li>
+
+                </ul>
+              </p>
+            </div>
+          </div>
+        <div class="col-md-7">
           {% if messages %}
             {% for message in messages %}
               <div class="alert alert-{{ message.tags }}">
@@ -58,19 +77,14 @@
           {% endif %}
           {% block content %}{% endblock %}
         </div>
-        <div class="col-md-4">
-          <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>You can put any information here you'd like.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
-          </div>
+
+
+        <div class="col-md-2">
+              <a href="{% url 'post-create' %}" type="button" class="btn btn-success" aria-haspopup="true" aria-expanded="false">
+                Create post +
+            </a>
         </div>
+
       </div>
     </main>
 
