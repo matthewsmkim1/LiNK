@@ -75,8 +75,8 @@ def create_post_in_group(request, groupname):
     current_user = request.user.username
 
 
-def add_user_to_group(user, group):
-    profile = Profile.objects.get(user=user)
+def add_user_to_group(request, group):
+    user = Profile.objects.get(user=request.user)
     group.members.add(user)
 
 
@@ -90,8 +90,8 @@ def join_group(request):
             group_name = group_join_form.cleaned_data['group_name']
             group = LinkGroup.objects.get(group_name=group_name)
 
-            if bcrypt.checkpw(key.encoded(), group.bkey):
-                add_user_to_group(request.user, group)
+            if bcrypt.checkpw(key.encode(), group.bkey):
+                add_user_to_group(request, group)
                 messages.success(
                     request, f"You have been successfully added to the group {group_name}!")
                 return redirect('profile')
