@@ -58,6 +58,10 @@ def create_group(request):
         }
         return render(request, 'groups/create_group.html', context)
 
+
+def test_react(request):
+    return render(request, 'groups/test_react.html')
+
 #! TODO
 @login_required
 def show_group(request, groupname):

@@ -14,6 +14,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('create_group/', group_views.create_group, name='create_group'),
     path('join_group/', group_views.join_group, name='join_group'),
+    path('test_react/', group_views.test_react, name='test_react'),
     path('', include('journal.urls')),
 ]
 
