@@ -1,0 +1,165 @@
+Ben: Hi I’m Ben
+
+Matt: I’m Matt Kim, and along with Matt Deppe who will be with us answering questions at the end of presentation, we created LiNK.
+
+Ben: We’re seeking to help families stay up to date with each other and save memories.
+
+Sunday dinners are a time when families can get together and give updates on what’s going on in their lives.
+
+Each of us had similar experiences with our own families.
+
+When talking, we realized that these dinners were actually the most central force in dictating how aware we were about each other’s lives
+
+
+
+However, due to siblings moving across country, children growing up, or a variety of other reasons, Sunday dinners are not always possible.
+
+This too became reality for us when we moved away to college.
+
+I distinctly remember going home after my first semester of college and being completely unaware of a lot of big things going on in my family members’ lives.
+
+This wasn’t for lack of trying.
+
+I talk to my parents fairly often but there’s just not enough time to speak with both of them and my siblings every week.
+
+As a result, important topics slip through.
+
+Also, the conversations I have with my family members aren’t just about listing off what's going on in our lives.
+
+But rather, they’re more just normal conversations.
+
+Again, this leaves many important topics unaddressed.
+
+
+Switching gears for a second: At these sunday dinners, important memories are often shared. Yet, unless written down, they can be forgotten.
+
+So, we wanted examine some ways that people, specifically families, store memories.
+
+Word of mouth, photos, and memorabilia were the first to come to mind.
+
+However, we felt word of mouth lacked reliability, and photos and memorabilia lacked sufficient context.
+
+So, we happened upon the sort of old school practice of scrapbooking.
+
+We liked how photos could be accompanied by text explaining what was going on in the photo
+
+
+However, we felt that scrapbook captions would often lack depth in their descriptions and would be infrequently updated.
+
+And thus, they might be functional for storing memories over the long term, but are not a solution for relaying those memories to family members in realtime and keeping them updated.
+
+
+So we thought, why not combine them?
+
+Let’s take the in-depth weekly update aspect of sunday dinners and cross it with the memory saving capabilities of a scrapbook
+
+
+So, our solution is a platform that encourages regular vlogs or blogs from family members with accompanying pictures, videos,
+
+or any other type of document wanted to be shared and saved
+
+
+So, to reiterate Link is a platform that encourages regular vlogs or blogs from family members.
+
+Users can attach photos, videos, or documents to posts.
+
+Posts are tagged with relevant descriptors for easy content retrieval
+
+Old posts are sorted and conveniently accessible through search -- including video content.
+
+Media albums are automatically generated from user posts.
+
+Each user would be a part of a family group, but a user could also be a part of more than one family group.
+
+For example, if you’re married you may have one family group be your nuclear family growing up, and another would be your current family unit with wife and kids.
+(BETTER from Aronhime, You have your family, and then you marry into another family)
+
+Family members can engage with each other’s posts, through commenting or reacting to it.
+
+
+Additionally, the platform would be gamified such that families could unlock certain badges for weekly streaks of posts, engagement in each other’s post and ect.
+
+
+When these posts are combined they would serve to create a “shared family ledger,” much like a timeline.
+
+For now, we’re building an MVP web app but we plan on building out a cross-platform mobile version as well.
+
+
+We truly believe that families staying connected and storing memories are issues that affect people all over the world; so we have huge potential market.
+
+Although not direct, the closest market analog to compare size is the personal use cloud-storage market which is expected to reach near $200 billion in the next several years.
+
+This is a strong indicator of people’s willingness to pay for similar services and outlines a huge potential market
+
+We’re targeting families that are geographically separated meaning those not living in the same household.
+
+Intuitively, this is the majority of American families because children often only live with their parents for an average of their first 21 years.
+
+After that, they move out and they are living separately from their siblings and parents
+
+We believe that geographically separated families are the ones who have the hardest time keeping up to date with each other due to obvious distance constraints
+
+Also, large families have an inherently more difficult challenge in connecting with everyone because there are just plainly more people.
+
+We count large families as those with 3 or more children, which is slightly less than 30% of American families
+
+We plan to monetize LiNK through a tiered subscription service where families pay for the amount of shared storage they’re using.
+
+Initially, the first 30GB will be free to the user.
+
+This will provide ample storage for a family to get hooked on using the platform.
+
+Once, they exceed the 30GB, they will pay $5.99 a month for up to 100GB of storage.
+
+ And then they will pay an additional $2.50 for every 100GB
+
+We would be paying around $2.20 per 100GB, so we are making the majority of our profits off of the base rate.
+
+Meaning, we’re incentivized to keep users on our platform instead of selling them a lot of storage.
+
+We think this fits with keeping our product consumer oriented
+
+Which will keep more users and attract additional users to our platform, in turning driving more revenue and profit.
+
+These are the most direct competitor we see to our platform:
+To address Facebook,
+The content that would be shared on our platform may oftentimes be too personal to share with Facebook friends however.
+
+The only place on Facebook where families can share personal information such as this is Facebook Groups as the platform is not extremely personal.
+
+Again, Facebook Groups is not really made or functional for this purpose.
+
+It can be worrisome to have private and meaningful posts juxtaposed by friends’ status updates for those not especially accustomed to the site.
+
+Additionally, the post and information archiving in groups is not sufficient when there’s a lot of content.
+
+As a result, a family history/narrative is not built over time.
+
+Messaging platforms address the privacy aspect we think most people desire for sharing personal information and are very personal; however, they too lack a solid infrastructure for storing messages/information/media overtime.
+
+ Also, they can become inundated with extraneous communication.
+
+Google drive on the other hand is useful for storing memories but retrieving that content, especially photos, is trying and not streamlined.
+
+Also, it isn’t a platform where people will or can regularly engage on, which renders it nonfunctional for keeping family members up to date with each other.
+
+(PUT ICON AT THE TOP)
+
+We believe we have 6 key competitive advantages.
+
+One, Link is a standalone space. This means that there is no content other than posts from family members.
+
+Two, content retrieval.  We have NLP content retrieval from videos, so families never lose a memory.
+
+Three, privacy. No ads equal no data collection.
+
+Four, ease of use. Just join a group and start sharing—as easy as that.
+
+Five, meaningful. Our platform promotes beyond surface level interaction.
+
+Finally, six, habitual. Earning badges for consistently making posts and engaging on the platform helps place our platform in a weekly routine.
+
+
+Well I think first and foremost for our team, one of our biggest qualifications is that we come from large families and have personally dealt with the issues we’re trying to address.
+
+Besides that, we’re all software engineers with some industry experience.

@@ -1,5 +1,5 @@
 body {
-  background: #fafafa;
+  background: rgb(241, 246, 251);
   color: #333333;
   margin-top: 5rem;
 }
@@ -13,7 +13,7 @@ ul {
 }
 
 .bg-steel {
-  background-color: #5f788a;
+  background-color: rgb(199, 78, 73);
 }
 
 .site-header .navbar-nav .nav-link {
@@ -85,4 +85,14 @@ ul {
 
 .post-photos {
     max-width: 100%;
+}
+
+.no-pad {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.logo {
+    max-width: 40%;
+    max-height: 40%;
 }
