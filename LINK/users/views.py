@@ -3,6 +3,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
+def members_group(request):
+    return render(request, 'users/members_group.html')
+
 
 def register(request):
     if request.method == 'POST':
