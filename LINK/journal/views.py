@@ -18,6 +18,10 @@ def home(request):
     return render(request, 'journal/home.html', context)
 
 
+def user_videos(request):
+    return render(request, 'journal/user_videos.html')
+
+
 class PostListView(ListView):
     model = Post
     template_name = 'journal/home.html'  # <app>/<model>_<viewtype>.html
