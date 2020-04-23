@@ -21,6 +21,8 @@ def home(request):
 def user_videos(request):
     return render(request, 'journal/user_videos.html')
 
+def user_photos(request):
+    return render(request, 'journal/user_photos.html')
 
 class PostListView(ListView):
     model = Post
