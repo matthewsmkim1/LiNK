@@ -24,6 +24,9 @@ def user_videos(request):
 def user_photos(request):
     return render(request, 'journal/user_photos.html')
 
+def user_search(request):
+    return render(request, 'journal/user_search.html')
+
 class PostListView(ListView):
     model = Post
     template_name = 'journal/home.html'  # <app>/<model>_<viewtype>.html

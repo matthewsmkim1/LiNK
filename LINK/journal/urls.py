@@ -19,4 +19,5 @@ urlpatterns = [
     path('about/', views.about, name='journal-about'),
     path('user-videos', views.user_videos, name='user-videos'),
     path('user-photos', views.user_photos, name='user-photos'),
+    path('user-search', views.user_search, name='user-search'),
 ]
