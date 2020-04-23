@@ -1,66 +1,178 @@
 {% extends "journal/base.html" %}
 {% block content %}
-<h1 class="mb-3">Posts by deppe (5)</h1>
-<article class="media content-section">
-  <img class="rounded-circle article-img" src="/media/default.jpg">
-  <div class="media-body">
-    <div class="article-metadata">
-      <a class="mr-2" href="#">deppe</a>
-    </div>
-    <h2><a class="article-title" href="#">My Trip to england</a></h2>
-    <p class="article-content">My trip to England! God save the queen!</p>
-    <img class="post-photos" src="/media/england.png"  >
-  </div>
-</article>
+<style>
+    :root{
+      --width: 100%;
+      --height: 100%;
+      --border-width: 200px;
+      --border-height: 200px;
 
-<article class="media content-section">
-  <img class="rounded-circle article-img" src="/media/default.jpg">
-  <div class="media-body">
-    <div class="article-metadata">
-      <a class="mr-2" href="#">deppe</a>
-    </div>
-    <h2><a class="article-title" href="#">Roadtrip</a></h2>
-    <p class="article-content">My cross country trip from this summer! Hopefully covid is gone so I can do this again!
-    </p>
-    <img class="post-photos" src="/media/roadtrip.png"  >
-  </div>
-</article>
+    }
 
-<article class="media content-section">
-  <img class="rounded-circle article-img" src="/media/default.jpg">
-  <div class="media-body">
-    <div class="article-metadata">
-      <a class="mr-2" href="#">deppe</a>
-    </div>
-    <h2><a class="article-title" href="#">Reef</a></h2>
-    <p class="article-content">Dem fishes</p>
-    <img class="post-photos" src="/media/marine.png"  >
-  </div>
-</article>
+    html,body{
+      background:radial-gradient(333333,333333);
+      height:100%;
+      width:100%;
+      position:relative;
+      overflow:hidden;
+    }
 
-<article class="media content-section">
-  <img class="rounded-circle article-img" src="/media/default.jpg">
-  <div class="media-body">
-    <div class="article-metadata">
-      <a class="mr-2" href="#">deppe</a>
-    </div>
-    <h2><a class="article-title" href="#">cool img</a></h2>
-    <p class="article-content">When the airlines shut down we can use these</p>
-    <img class="post-photos" src="/media/balloon.png"  >
-  </div>
-</article>
+    .gallery{
+      position:relative;
+      height:100%;
+      width:100%;
+    }
 
-<article class="media content-section">
-  <img class="rounded-circle article-img" src="/media/default.jpg">
-  <div class="media-body">
-    <div class="article-metadata">
-      <a class="mr-2" href="#">deppe</a>
-    </div>
-    <h2><a class="article-title" href="#">Coolest place I've ever been to</a></h2>
-    <p class="article-content"> I can't wait to go back here</p>
-    <img class="post-photos" src="/media/mountain_lake.png"  >
+    .gallery:after{
+      content:'';
+    }
+
+    .shadow{
+      position: absolute;
+      top: 500px;
+      left: 100px;
+      width: 500px;
+      height: 40px;
+      border-radius: 50%;
+      background: radial-gradient(#805d78,rgba(0,0,0,0) 70%);
+    }
+
+    img{
+      width:var(--width);
+      height:var(--height);
+    }
+
+    .clipped-border{
+      -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+       clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+       padding:5px;
+       background:linear-gradient(grey,lightgrey);
+       width:var(--border-width);
+       height:var(--border-height);
+       max-height:250px;
+       max-width:250px;
+       height: var(--height);
+       width:var(--width);
+       transition:transform 0.2s;
+       position:absolute;
+       cursor:pointer;
+    }
+
+
+
+    .clipped-border:before{
+      content:'';
+      position:absolute;
+      opacity:0.5;
+      width:350px;
+      height:70px;
+      background:white;
+      top:0;
+      left:0;
+      z-index:1;
+      transform:rotate(45deg);
+      transition:transform 0.5s;
+    }
+
+    .clipped-border:hover:before{
+      transform: translate(-100px,400%) rotate(45deg);
+      transition:transform 0.5s;
+    }
+
+    .clipped-border:nth-child(2){
+      top:196px;
+      left:118px;
+    }
+
+    .clipped-border:nth-child(3){
+      top:0;
+      left:235px;
+    }
+
+    .clipped-border:nth-child(4){
+      top:196px;
+      left:353px;
+    }
+
+    .clipped-border:nth-child(5){
+      top:0;
+      left:470px;
+    }
+
+    #clipped {
+    -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+
+    }
+
+    .clipped-border:hover{
+      transform:scale(1.2);
+      transition:transform 0.2s;
+      z-index:10;
+    }
+
+
+    @media screen and (max-width:500px){
+      .clipped-border{
+        width:100px;
+        height:100px;
+      }
+
+      .clipped-border:nth-child(2){
+        top:0;
+        left:100px;
+      }
+
+      .clipped-border:nth-child(3){
+        left:200px;
+      }
+
+      .clipped-border:nth-child(4){
+        top:82px;
+        left:50px;
+      }
+
+      .clipped-border:nth-child(5){
+        top:82px;
+        left:150px;
+      }
+    }
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+    }
+</style>
+<div class = "gallery">
+  <div class="clipped-border">
+    <img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.gettyimages.com.au%2Fgi-resources%2Fimages%2Ffrontdoor%2Fcreative%2FPanoramicImagesRM%2FFD_image.jpg&f=1" id="clipped">
+    <div class="centered"><b>2020</b></div>
+
   </div>
-</article>
+  <div class="clipped-border">
+    <img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fbpucette.b.p.pic.centerblog.net%2Ffv86ll9r.jpg&f=1" id="clipped">
+    <div class="centered"><b>2019</b></div>
+  </div>
+  <div class="clipped-border">
+    <img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fimagejournal.org%2Fwp-content%2Fuploads%2Fbb-plugin%2Fcache%2F23466317216_b99485ba14_o-panorama.jpg&f=1" id="clipped">
+    <div class="centered"><b>2018</b></div>
+  </div>
+    <div class="clipped-border">
+    <img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.lokeshdhakar.com%2Fprojects%2Flightbox2%2Fimages%2Fimage-4.jpg&f=1" id="clipped">
+    <div class="centered"><b>2017</b></div>
+  </div>
+    <div class="clipped-border">
+    <img src="https://images.pexels.com/photos/932638/pexels-photo-932638.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" id="clipped">
+    <div class="centered"><b>2016</b></div>
+  </div>
+  <div class = "shadow"></div>
+</div>
+
+
+
+
 {% for post in posts %}
 <article class="media content-section">
   <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
