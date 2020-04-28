@@ -20,6 +20,12 @@ import random
 import string
 
 
+def ping(request):
+    ally = LinkGroup.objects.get(group_name="superduper")
+    print(ally.members.all())
+    return render(request, "groups/dummy.html")
+
+
 def randomString(stringLength=50):
     """Generate a random string of fixed length """
     letters = string.ascii_letters
@@ -43,6 +49,7 @@ def create_group(request):
                 bkey=hashed
             )
             user = Profile.objects.get(user=request.user)
+            print(user)
             new_group.members.add(user)
             new_group.save()
             messages.success(
