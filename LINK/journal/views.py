@@ -11,11 +11,11 @@ from django.views.generic import (
 from .models import Post
 
 
-def home(request):
+def base(request):
     context = {
         'posts': Post.objects.all()
     }
-    return render(request, 'journal/home.html', context)
+    return render(request, 'journal/base.html', context)
 
 
 def user_videos(request):

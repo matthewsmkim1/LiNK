@@ -56,14 +56,17 @@
         <div class="content-section">
           {% if user.is_authenticated %}
 
+
+
           <div class="btn-group">
             <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
-              Garrett - Karyo
+              Switch groups
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Levine - Karyo</a>
-              <a class="dropdown-item" href="#">Garrett - Finley</a>
+              {% for group in user.profile.groups.all %}
+              <a class="dropdown-item" href="#"> {{ group.group_name }}</a>
+              {% endfor %}
             </div>
           </div>
           {% endif %}
