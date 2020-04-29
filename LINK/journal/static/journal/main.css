@@ -214,3 +214,55 @@ li {
     margin-bottom: 0.25rem;
   }
 }
+
+#abc {
+    visibility: visible;
+    /* display: block; */
+
+}
+#startButton {
+    visibility: visible;
+    /* display: block; */
+
+}
+
+#def {
+    visibility: hidden;
+    /* display: none; */
+
+}
+
+#stopButton {
+    visibility: hidden;
+    /* display: none; */
+}
+
+
+video {
+  margin-top: 2px;
+  border: 1px solid black;
+}
+
+.left {
+    display: inline-block;
+}
+
+.cent {
+    text-align: center;
+}
+
+.space {
+    display: block;
+}
+.button {
+  cursor: pointer;
+  width: 160px;
+  border: 1px solid black;
+  font-size: 16px;
+  text-align: center;
+  padding-top: 2px;
+  padding-bottom: 4px;
+  color: white;
+  background-color: red;
+  text-decoration: none;
+}
