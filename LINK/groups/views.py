@@ -19,6 +19,11 @@ import bcrypt
 import random
 import string
 
+def ping(request):
+    ally = LinkGroup.objects.get(group_name="temp2")
+    print(ally.members.all())
+    return render(request, "groups/dummy.html")
+
 
 def randomString(stringLength=50):
     """Generate a random string of fixed length """
@@ -43,8 +48,14 @@ def create_group(request):
                 bkey=hashed
             )
             user = Profile.objects.get(user=request.user)
+            #add member to group
             new_group.members.add(user)
             new_group.save()
+
+            #add group name to userprofile
+            user.groups.add(new_group)
+            user.save()
+
             messages.success(
                 request, f"This is your group's join key. Make sure to keep it somewhere safe! \n {key} \n \
                  \n If you want to add someone to the group, give them the key and the group name\n {group_creation_form.cleaned_data['group_name']}")
@@ -83,6 +94,7 @@ def add_user_to_group(request, group):
 @login_required
 def join_group(request):
     current_user = request.user.username
+    user = Profile.objects.get(user=request.user)
     if request.method == "POST":
         group_join_form = LinkGroupJoinForm(request.POST)
         if group_join_form.is_valid():
@@ -92,6 +104,10 @@ def join_group(request):
 
             if bcrypt.checkpw(key.encode(), group.bkey):
                 add_user_to_group(request, group)
+
+                user.groups.add(group)
+                user.save()
+
                 messages.success(
                     request, f"You have been successfully added to the group {group_name}!")
                 return redirect('profile')
