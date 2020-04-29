@@ -1,5 +1,4 @@
 from django.db import models
-
 from users.models import Profile
 from journal.models import Post
 from django.urls import reverse
@@ -8,10 +7,6 @@ from django.utils import timezone
 from django.contrib.auth.models import Group
 from django.contrib.auth.hashers import BCryptSHA256PasswordHasher as bcrypt
 from PIL import Image
-
-
-# Create your models here.
-
 
 #! TODO add some functionality so that we can have multuple groups with the same name, but different bkey
 #! right now when adding someone to the group they need to present the bkey, since django cannot filter based on binaryfield I hacked in
