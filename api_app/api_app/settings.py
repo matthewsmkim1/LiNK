@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # !----
     'profiles.apps.ProfilesConfig',
+    'posts.apps.PostsConfig',
+    'frontend.apps.FrontendConfig',
     'rest_framework',
     'knox',
 
