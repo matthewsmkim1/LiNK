@@ -19,7 +19,6 @@ import bcrypt
 import random
 import string
 
-
 def ping(request):
     ally = LinkGroup.objects.get(group_name="temp2")
     print(ally.members.all())
