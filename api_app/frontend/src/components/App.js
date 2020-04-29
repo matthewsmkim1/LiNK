@@ -13,23 +13,51 @@ import TopBar from "./layout/TopBar";
 import Entries from "./layout/Entries";
 import GroupEntries from "./layout/GroupEnrties";
 import ViewGroup from "./layout/ViewGroups";
+import CreateEntry from "./post_forms/CreateEntry";
+// import JoinGroup from "./group_forms/JoinGroup";
+// import CreateGroup from "./group_forms/CreateGroup";
 
 const DashBoardSimple = (props) => {
   return (
     <div>
       <h1>Index links</h1>
       <p>
-        <a href="/login">Login</a>
-        {"\n"}....
-        <a href="/register">Register</a>
-        {"\n"}....
-        <a href="/new">New Component</a>
-        {"\n"}....
-        <a href="/dashy">Entries</a>
-        {"\n"}....
-        <a href="/view-group">view groups</a>
-        {"\n"}....
-        <a href="/group-entries">group posts</a>
+        <h2>
+          <a href="/login">Login</a>
+          {"\n"}....
+        </h2>
+        <h2>
+          <a href="/register">Register</a>
+          {"\n"}....
+        </h2>
+        <h2>
+          <a href="/new">New Component</a>
+          {"\n"}....
+        </h2>
+        <h2>
+          <a href="/dashy">Entries</a>
+          {"\n"}....
+        </h2>
+        <h2>
+          <a href="/view-group">view groups</a>
+          {"\n"}....
+        </h2>
+        <h2>
+          <a href="/group-entries">group posts</a>
+          {"\n"}....
+        </h2>
+        <h2>
+          <a href="/create-post">create-post</a>
+          {"\n"}....
+        </h2>
+        <h2>
+          <a href="/create-group">create-group</a>
+          {"\n"}....
+        </h2>
+        <h2>
+          <a href="/join-group">join-group</a>
+          {"\n"}....
+        </h2>
       </p>
     </div>
   );
@@ -53,6 +81,9 @@ class App extends Component {
             <Route exact path="/dashy" component={Entries} />
             <Route exact path="/view-group" component={ViewGroup} />
             <Route exact path="/group-entries" component={GroupEntries} />
+            <Route exact path="/create-post" component={CreateEntry} />
+            {/* <Route exact path="/create-group" component={CreateGroup} />
+            <Route exact path="/join-group" component={JoinGroup} /> */}
           </Switch>
         </Router>
       </Provider>

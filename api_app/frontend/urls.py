@@ -14,5 +14,8 @@ urlpatterns = [
     path('new', index),
     path('view-group', index),
     path('group-entries', index),
+    path('create-post', index),
+    path('create-group', index),
+    path('join-group', index),
     path('dashy', index),
 ]
