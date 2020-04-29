@@ -1,7 +1,7 @@
 
 from rest_framework import serializers
 
-from todos.models import Post
+from .models import Post
 
 
 class PostSerializer(serializers.ModelSerializer):
