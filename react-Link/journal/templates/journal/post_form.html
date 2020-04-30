@@ -1,0 +1,174 @@
+{% extends "journal/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <!-- <div class="content-section">
+        <form method="POST" enctype="multipart/form-data" class="postForm">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Journal Post</legend>
+
+            </fieldset>
+            <img src="/media/black.png" class="recorder"/>
+            <div class="vid-controls">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+
+                <a href="#" ><img src="/media/recordButton.png" class="recordButton"/></a>
+
+
+            </div>
+
+
+            <div class="form-group">
+                <button class="btn btn-outline-info submitButton" type="submit">Post</button>
+            </div>
+        </form>
+    </div> -->
+
+
+
+
+    <div class="content-section">
+        <form method="POST" enctype="multipart/form-data" class="postForm">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Journal Post</legend>
+                <!-- {{ form|crispy }} -->
+                <!-- {{ p_form|crispy }} -->
+            </fieldset>
+            <div class="content-section cent">
+                <div class="left">
+                    <div id="startButton" class="button ">   Record            </div>
+
+                    <div id="abc">
+                        <video id="preview" width="640" height="480" autoplay muted></video>
+                    </div>
+                </div>
+                <div class="space"></div>
+
+                <div class="left">
+
+                    <div id="stopButton" class="button">Stop</div>
+                    <div id="def">
+
+                        <h2 class="space">Preview</h2>
+                        <video id="recording" width="640" height="480" controls></video>
+                        <a id="downloadButton" class="button space">
+                        Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {{ form|crispy }}
+            <div class="form-group">
+                <button class="btn btn-outline-info submitButton" type="submit">Post</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+    <script>
+
+    let preview = document.getElementById("preview");
+    let recording = document.getElementById("recording");
+    let startButton = document.getElementById("startButton");
+    let stopButton = document.getElementById("stopButton");
+    let downloadButton = document.getElementById("downloadButton");
+    let logElement = document.getElementById("log");
+
+    let recordingTimeMS = 5000;
+
+
+    function log(msg) {
+        //logElement.innerHTML += msg + "\n";
+    }
+
+    function wait(delayInMS) {
+        return new Promise(resolve => setTimeout(resolve, delayInMS));
+    }
+
+    function startRecording(stream, lengthInMS) {
+        document.getElementById("abc").style.visibility = "visible";
+        document.getElementById("def").style.visibility = "hidden";
+
+        startButton.style.visibility = "hidden";
+        stopButton.style.visibility = "visible";
+        // document.getElementById("abc").style.display = "block";
+        // document.getElementById("def").style.display = "none";
+        //
+        // startButton.style.display = "none";
+        // stopButton.style.display = "block";
+        console.log("Hello")
+        let recorder = new MediaRecorder(stream);
+        let data = [];
+
+        recorder.ondataavailable = event => data.push(event.data);
+        recorder.start();
+        log(recorder.state + " for " + (lengthInMS/1000) + " seconds...");
+
+        let stopped = new Promise((resolve, reject) => {
+        recorder.onstop = resolve;
+        recorder.onerror = event => reject(event.name);
+        });
+
+        let recorded = wait(lengthInMS).then(
+        () => recorder.state == "recording" && recorder.stop()
+        );
+
+        return Promise.all([
+            stopped,
+            recorded
+        ])
+        .then(() => data);
+    }
+
+    function stop(stream) {
+        stream.getTracks().forEach(track => track.stop());
+        document.getElementById("abc").style.visibility = "hidden";
+        document.getElementById("def").style.visibility = "visible";
+
+        startButton.style.visibility = "visible";
+        stopButton.style.visibility = "hidden";
+        // document.getElementById("abc").style.display = "none";
+        // document.getElementById("def").style.display = "block";
+        //
+        // startButton.style.display = "block";
+        // stopButton.style.display = "none";
+    }
+
+    startButton.addEventListener("click", function() {
+        navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true
+        }).then(stream => {
+                preview.srcObject = stream;
+                downloadButton.href = stream;
+                preview.captureStream = preview.captureStream || preview.mozCaptureStream;
+                return new Promise(resolve => preview.onplaying = resolve);
+              }).then(() => startRecording(preview.captureStream(), recordingTimeMS))
+              .then (recordedChunks => {
+                let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+                recording.src = URL.createObjectURL(recordedBlob);
+                downloadButton.href = recording.src;
+                downloadButton.download = "webcamVideo.webm";
+
+                log("Successfully recorded " + recordedBlob.size + " bytes of " +
+                    recordedBlob.type + " media.");
+              })
+              .catch(log);
+        }, false);
+
+
+        stopButton.addEventListener("click", function() {
+        stop(preview.srcObject);
+        }, false);
+
+    </script>
+    </div>
+{% endblock content %}
