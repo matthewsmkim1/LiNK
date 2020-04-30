@@ -44,6 +44,11 @@ class PostListView(ListView):
     ordering = ['-date_posted']
     paginate_by = 5
 
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.request.user)
+        return Post.objects.filter(group_to_post=user.profile.current_group_for_user)
+
+
 
 class UserPostListView(ListView):
     model = Post

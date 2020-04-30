@@ -51,8 +51,8 @@ def change_group(request):
 
         if change_group_form.is_valid():
             change_group_form.save()
-            messages.success(request, f'You have changed the group you are viewing')
-            return redirect('profile') #maybe change this?
+            groupname = request.user.profile.current_group_for_user.group_name
+            messages.success(request, f'You have changed the group you are viewing to ' + groupname)
     else:
         change_group_form = UpdateCurrentGroupForm(instance=request.user.profile)
 
