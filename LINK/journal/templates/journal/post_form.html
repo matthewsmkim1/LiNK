@@ -17,25 +17,28 @@
                         <video id="preview" width="640" height="480" autoplay muted></video>
                     </div>
                 </div>
-                <div class="space"></div>
 
                 <div class="left">
 
-                    <div id="stopButton" class="button">Stop</div>
                     <div id="def">
 
-                        <h2 class="space">Preview</h2>
                         <video id="recording" width="640" height="480" controls></video>
                         <a id="downloadButton" class="button space">
                         Download
                         </a>
                     </div>
                 </div>
+                <div id="stopButton" class="button">Stop
+                    <div class="space"></div>
+                   <img style="cursor:pointer;"width="40px;" height="40px;"src="/media/blackcircle.png"/>            </div>
+                <div id="startButton" class="button ">   Record                       <div class="space"></div>
+                <img style="cursor:pointer;"width="40px;" height="40px;"src="/media/circle.png"/>            </div>
+
             </div>
 
             {{ form|crispy }}
             <div class="form-group">
-                <button class="btn btn-outline-info submitButton" type="submit">Post</button>
+                <button id="postButton"class="btn btn-outline-info submitButton" type="submit" onclick="downloadButton.click()">Post</button>
             </div>
         </form>
     </div>
@@ -55,6 +58,9 @@
 
     let recordingTimeMS = 5000;
 
+    let postButton = document.getElementById("postButton")
+
+
 
     function log(msg) {
         //logElement.innerHTML += msg + "\n";
@@ -65,17 +71,16 @@
     }
 
     function startRecording(stream, lengthInMS) {
-        document.getElementById("abc").style.visibility = "visible";
-        document.getElementById("def").style.visibility = "hidden";
-
-        startButton.style.visibility = "hidden";
-        stopButton.style.visibility = "visible";
-        // document.getElementById("abc").style.display = "block";
-        // document.getElementById("def").style.display = "none";
+        // document.getElementById("abc").style.visibility = "visible";
+        // document.getElementById("def").style.visibility = "hidden";
         //
-        // startButton.style.display = "none";
-        // stopButton.style.display = "block";
-        console.log("Hello")
+        // startButton.style.visibility = "hidden";
+        // stopButton.style.visibility = "visible";
+        document.getElementById("abc").style.display = "block";
+        document.getElementById("def").style.display = "none";
+
+        startButton.style.display = "none";
+        stopButton.style.display = "block";
         let recorder = new MediaRecorder(stream);
         let data = [];
 
@@ -101,23 +106,31 @@
 
     function stop(stream) {
         stream.getTracks().forEach(track => track.stop());
-        document.getElementById("abc").style.visibility = "hidden";
+        // document.getElementById("abc").style.visibility = "hidden";
+        // document.getElementById("def").style.visibility = "visible";
+        //
+        // startButton.style.visibility = "visible";
+        // stopButton.style.visibility = "hidden";
+        document.getElementById("abc").style.display = "none";
+        document.getElementById("def").style.display = "block";
         document.getElementById("def").style.visibility = "visible";
 
-        startButton.style.visibility = "visible";
-        stopButton.style.visibility = "hidden";
-        // document.getElementById("abc").style.display = "none";
-        // document.getElementById("def").style.display = "block";
-        //
-        // startButton.style.display = "block";
-        // stopButton.style.display = "none";
+        startButton.style.display = "block";
+        stopButton.style.display = "none";
     }
 
     startButton.addEventListener("click", function() {
+        document.getElementById("abc").style.display = "block";
+        document.getElementById("def").style.visibility = "hidden";
+        document.getElementById("def").style.display = "block";
+
+        startButton.style.display = "block";
+        stopButton.style.display = "block";
         navigator.mediaDevices.getUserMedia({
             video: true,
             audio: true
         }).then(stream => {
+
                 preview.srcObject = stream;
                 downloadButton.href = stream;
                 preview.captureStream = preview.captureStream || preview.mozCaptureStream;
