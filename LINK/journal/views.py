@@ -91,7 +91,7 @@ class PostDetailView(DetailView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     # form_class = PostCreateForm
-    fields = [ 'video','title', 'content', 'image', 'group_to_post']
+    fields = [ 'title', 'content', 'image', 'group_to_post']
     #
     # def group_shit(self, form):
     #never called
