@@ -24,3 +24,9 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['image']
+
+class UpdateCurrentGroupForm(forms.ModelForm):
+    # current_group_for_user = forms.ChoiceField(choices=group_options, widget=forms.RadioSelect())
+    class Meta:
+        model = Profile
+        fields = ['current_group_for_user']

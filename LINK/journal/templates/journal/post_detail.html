@@ -13,14 +13,16 @@
           </div>
         {% endif %}
       </div>
+
       <h2 class="article-title">{{ object.title }}</h2>
       <p class="article-content">{{ object.content }}</p>
-      {% if post.video != 'NULL' %}
+
+      <!-- {% if post.video != 'NULL' %}
           <video class="post-photos" src="{{ post.video.url }}" controls></video>
       {% endif %}
       {% if post.image != 'NULL' %}
           <img class="post-photos" style="width: 20%;height: 20%;" src="{{ post.image.url }}">
-      {% endif %}
+      {% endif %} -->
     </div>
   </article>
 {% endblock content %}

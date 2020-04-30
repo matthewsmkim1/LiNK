@@ -28,7 +28,7 @@ class Post(models.Model):
     video = models.FileField(default=getVideo(), upload_to="profile_pics")
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    group_to_post = models.ForeignKey(LinkGroup, on_delete=models.CASCADE)
+    group_to_post = models.ForeignKey(LinkGroup, on_delete=models.CASCADE, null=True)
 
     def setVideo():
         video = models.FileField(default=getVideo(), upload_to="profile_pics")

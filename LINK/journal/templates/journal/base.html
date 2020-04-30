@@ -1,4 +1,6 @@
 {% load static %}
+{% load crispy_forms_tags %}
+
 <!DOCTYPE html>
 <html>
 
@@ -69,7 +71,6 @@
               <a class="dropdown-item" href="{% url 'group-post-view' group.group_name %}"> {{ group.group_name }}</a>
               {% endfor %}
             </div>
-
           </div>
 
           {% endif %}
@@ -82,6 +83,8 @@
               </li>
               <li class="list-group-item list-group-item-light"><a href="http://127.0.0.1:8000">Documents</a></li>
               <li class="list-group-item list-group-item-light"><a href="{% url 'members_group' %}">Members</a></li>
+              <li class="list-group-item list-group-item-light"><a href="{% url 'change_group' %}">Change Group</a></li>
+
 
             </ul>
           </p>
@@ -102,7 +105,7 @@
 
       <div class="col-md-2">
 
-        <a href="{% url 'post-create' user.profile.groups.first.group_name %}" type="button" class="btn btn-success" aria-haspopup="true"
+        <a href="{% url 'post-create' %}" type="button" class="btn btn-success" aria-haspopup="true"
           aria-expanded="false">
           Create post +
         </a>

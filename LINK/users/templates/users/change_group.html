@@ -1,0 +1,14 @@
+{% extends "journal/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" enctype="multipart/form-data" class="postForm">
+            {% csrf_token %}
+            {{ change_group_form|crispy }}
+
+            <div class="form-group">
+                <button id="postButton" class="btn btn-outline-info submitButton" type="submit">Change Group</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
