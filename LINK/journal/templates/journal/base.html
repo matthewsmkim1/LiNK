@@ -62,15 +62,15 @@
 
 
           <div class="btn-group">
-            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            <button type="button" class="btn btn-warning" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
-              Switch groups
+              {{ user.profile.current_group_for_user.group_name }}
             </button>
-            <div class="dropdown-menu">
+            <!-- <div class="dropdown-menu">
               {% for group in user.profile.groups.all %}
               <a class="dropdown-item" href="{% url 'group-post-view' group.group_name %}"> {{ group.group_name }}</a>
               {% endfor %}
-            </div>
+            </div> -->
           </div>
 
           {% endif %}
@@ -79,7 +79,6 @@
             <ul class="list-group">
               <li class="list-group-item list-group-item-light"><a href="http://127.0.0.1:8000/user-search">Search</a></li>
               <li class="list-group-item list-group-item-light"><a href="http://127.0.0.1:8000/user-photos">Media</a></li>
-              </li>
               <li class="list-group-item list-group-item-light"><a href="{% url 'members_group' %}">Members</a></li>
               <li class="list-group-item list-group-item-light"><a href="{% url 'change_group' %}">Change Group</a></li>
 

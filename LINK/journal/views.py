@@ -36,6 +36,7 @@ class GroupPostListView(ListView):
     template_name = 'journal/home.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     paginate_by = 5
+    ordering = ['-date_posted']
 
     def get_queryset(self):
         groupname = get_object_or_404(
