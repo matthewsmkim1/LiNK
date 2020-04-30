@@ -1,5 +1,18 @@
 {% extends "journal/base.html" %}
 {% block content %}
-<input id="finder" type="text" placeholder="search...">
+    <input id="finder" type="text" placeholder="search...">
+    <article id="hello" class="media content-section" style="background: none; border:none; visibility: hidden;">
+      <div class="media-body" style="text-align:center;">
+          <img style"margin-bottom: 20px; display: block;"  style="width: 30%;height: 30%;" src="/media/profile_pics/IMG_5659.PNG">
+      </div>
+    </article>
+    <script>
+        searchTerm = document.getElementById("finder")
 
+        searchTerm.addEventListener("change", function() {
+            if (searchTerm.value == "dog") {
+                document.getElementById("hello").style.visibility = "visible"
+            }
+        }, false);
+    </script>
 {% endblock content %}

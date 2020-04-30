@@ -4,6 +4,7 @@ from .views import (
     PostDetailView,
     PostCreateView,
     PostUpdateView,
+    PostPhotoView,
     PostDeleteView,
     UserPostListView,
     GroupPostListView,
@@ -13,7 +14,6 @@ from . import views
 #path('<str:groupname>;', view, name='exampleview')
 
 urlpatterns = [
-    path('<str:groupname>', GroupPostListView.as_view(), name='group-post-view'),
     path('', PostListView.as_view(), name='journal-home'),
     path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
@@ -24,4 +24,6 @@ urlpatterns = [
     path('user-videos', views.user_videos, name='user-videos'),
     path('user-photos', views.user_photos, name='user-photos'),
     path('user-search', views.user_search, name='user-search'),
+    path('2020-photos', PostPhotoView.as_view(), name='user-2020-photos'),
+    path('<str:groupname>', GroupPostListView.as_view(), name='group-post-view'),
 ]
