@@ -8,15 +8,10 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
+from django import forms
+from groups.models import LinkGroup
 from .models import Post
 import os
-
-def base(request):
-    context = {
-        'posts': Post.objects.all()
-    }
-    return render(request, 'journal/base.html', context)
-
 
 def user_videos(request):
     return render(request, 'journal/user_videos.html')
@@ -26,6 +21,20 @@ def user_photos(request):
 
 def user_search(request):
     return render(request, 'journal/user_search.html')
+
+
+class GroupPostListView(ListView):
+    model = Post
+    template_name = 'journal/home.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'posts'
+    paginate_by = 5
+
+    def get_queryset(self):
+        groupname = get_object_or_404(LinkGroup, group_name=self.kwargs.get('groupname'))
+        print(groupname.posts.all())
+        return groupname.posts.all()
+        # return Post.objects.filter(author=user).order_by('-date_posted')
+
 
 class PostListView(ListView):
     model = Post
@@ -49,20 +58,39 @@ class UserPostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
 
+#
+# class PostCreateForm(forms.Form):
+#     # name = forms.CharField()
+#     # message = forms.CharField(widget=forms.Textarea)
+#     title = forms.CharField(max_length=100)
+#     # content = forms.CharField(max_length=100)
+#     class Meta:
+#         model = Post
+#         fields = ['title', 'content', 'image', 'video', 'group_to_post']
+
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
+    # form_class = PostCreateForm
+    # fields = [ 'video','title', 'content', 'image', 'group_to_post']
     fields = [ 'video','title', 'content', 'image']
+    #
+    # def group_shit(self, form):
+    #never called
+    #     print('2222222222222')
+    #     print(form.instance.group_to_post)
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        # print(form.instance.group_to_post)
+        # form.instance.group_to_post = self.request.current_group???
         return super().form_valid(form)
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     model = Post
-    fields = [ 'video','title', 'content', 'image']
+    fields = [ 'title', 'content', 'image']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
