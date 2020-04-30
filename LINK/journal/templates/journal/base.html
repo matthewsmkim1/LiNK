@@ -22,6 +22,7 @@
 
   <header class="site-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top no-pad">
+
       <a class="navbar-brand mr-4" href="{% url 'journal-home' %}"><img class="logo" src="/media/LiNK.png" /></a>
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
@@ -65,10 +66,12 @@
             </button>
             <div class="dropdown-menu">
               {% for group in user.profile.groups.all %}
-              <a class="dropdown-item" href="#"> {{ group.group_name }}</a>
+              <a class="dropdown-item" href="{% url 'group-post-view' group.group_name %}"> {{ group.group_name }}</a>
               {% endfor %}
             </div>
+
           </div>
+
           {% endif %}
 
           <p class='text-muted'>
@@ -98,7 +101,8 @@
 
 
       <div class="col-md-2">
-        <a href="{% url 'post-create' %}" type="button" class="btn btn-success" aria-haspopup="true"
+
+        <a href="{% url 'post-create' user.profile.groups.first.group_name %}" type="button" class="btn btn-success" aria-haspopup="true"
           aria-expanded="false">
           Create post +
         </a>

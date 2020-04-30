@@ -1,6 +1,5 @@
 from django.db import models
 from users.models import Profile
-from journal.models import Post
 from django.urls import reverse
 from django.utils import timezone
 
@@ -16,7 +15,7 @@ class LinkGroup(models.Model):
     group_description = models.CharField(max_length=2000, default="New Group!")
     date_created = models.DateTimeField(default=timezone.now)
     members = models.ManyToManyField(Profile)
-    posts = models.ManyToManyField(Post)
+    posts = models.ManyToManyField('journal.Post')
     bkey = models.BinaryField()  # this must be hashed using bycrpt to a b"" string
     group_avatar = models.ImageField(
         default='default.jpg', upload_to='profile_pics')
