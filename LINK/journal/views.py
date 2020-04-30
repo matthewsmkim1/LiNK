@@ -14,17 +14,22 @@ from .models import Post
 from users.models import Profile
 import os
 
+
 def user_videos(request):
     return render(request, 'journal/user_videos.html')
+
 
 def user_photos(request):
     return render(request, 'journal/user_photos.html')
 
+
 def user_search(request):
     return render(request, 'journal/user_search.html')
 
+
 def user_all_photos(request):
     return render(request, 'journal/user_2020_photos.html')
+
 
 class GroupPostListView(ListView):
     model = Post
@@ -33,7 +38,8 @@ class GroupPostListView(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        groupname = get_object_or_404(LinkGroup, group_name=self.kwargs.get('groupname'))
+        groupname = get_object_or_404(
+            LinkGroup, group_name=self.kwargs.get('groupname'))
         return Post.objects.filter(group_to_post=groupname)
 
         # return groupname.posts.all()
@@ -46,12 +52,18 @@ class PostListView(ListView):
     ordering = ['-date_posted']
     paginate_by = 5
 
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.request.user)
+        return Post.objects.filter(group_to_post=user.profile.current_group_for_user)
+
+
 class PostPhotoView(ListView):
     model = Post
     template_name = 'journal/user_2020_photos.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 5
+
 
 class UserPostListView(ListView):
     model = Post
@@ -94,24 +106,20 @@ class PostDetailView(DetailView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     # form_class = PostCreateForm
-    fields = [ 'title', 'content', 'image', 'group_to_post']
-    #
-    # def group_shit(self, form):
-    #never called
-    #     print('2222222222222')
-    #     print(form.instance.group_to_post)
+    fields = ['title', 'content', 'image']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        # print(form.instance.group_to_post)
-        # form.instance.group_to_post = self.request.current_group????
+        profile = Profile.objects.get(user=self.request.user)
+        group = profile.current_group_for_user
+        form.instance.group_to_post = group
         return super().form_valid(form)
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     model = Post
-    fields = [ 'title', 'content', 'image']
+    fields = ['title', 'content', 'image']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
