@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, UpdateCurrentGroupForm
 
 def members_group(request):
     return render(request, 'users/members_group.html')
@@ -43,3 +43,21 @@ def profile(request):
     }
 
     return render(request, 'users/profile.html', context)
+
+@login_required
+def change_group(request):
+    if request.method == 'POST':
+        change_group_form = UpdateCurrentGroupForm(request.POST, instance=request.user.profile)
+
+        if change_group_form.is_valid():
+            change_group_form.save()
+            messages.success(request, f'You have changed the group you are viewing')
+            return redirect('profile') #maybe change this?
+    else:
+        change_group_form = UpdateCurrentGroupForm(instance=request.user.profile)
+
+    context = {
+        'change_group_form': change_group_form
+    }
+
+    return render(request, 'users/change_group.html', context)

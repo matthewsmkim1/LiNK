@@ -3,9 +3,10 @@ from django.contrib.auth.models import User
 from PIL import Image
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-    groups = models.ManyToManyField('groups.LinkGroup')
+    groups = models.ManyToManyField('groups.LinkGroup', related_name="all_groups")
+    current_group_for_user = models.ForeignKey('groups.LinkGroup', on_delete=models.CASCADE, related_name="single_group")
 
     def __str__(self):
         return f'{self.user.username} Profile'

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import (
@@ -11,6 +11,7 @@ from django.views.generic import (
 from django import forms
 from groups.models import LinkGroup
 from .models import Post
+from users.models import Profile
 import os
 
 def user_videos(request):
@@ -31,9 +32,9 @@ class GroupPostListView(ListView):
 
     def get_queryset(self):
         groupname = get_object_or_404(LinkGroup, group_name=self.kwargs.get('groupname'))
-        print(groupname.posts.all())
-        return groupname.posts.all()
-        # return Post.objects.filter(author=user).order_by('-date_posted')
+        return Post.objects.filter(group_to_post=groupname)
+
+        # return groupname.posts.all()
 
 
 class PostListView(ListView):
@@ -69,11 +70,23 @@ class PostDetailView(DetailView):
 #         fields = ['title', 'content', 'image', 'video', 'group_to_post']
 
 
+# class TempGroupView(LoginRequiredMixin, CreateView):
+#     model = Profile
+#     fields = ['current_group_for_user']
+#
+#     def get_success_url(self):
+#         return 'http://127.0.0.1:8000/'
+#
+#     def form_valid(self, form):
+#         print(self.request.user)
+#         print(form.instance.user)
+#         form.save()
+#         return super().form_valid(form)
+
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     # form_class = PostCreateForm
-    # fields = [ 'video','title', 'content', 'image', 'group_to_post']
-    fields = [ 'video','title', 'content', 'image']
+    fields = [ 'title', 'content', 'image', 'group_to_post']
     #
     # def group_shit(self, form):
     #never called
@@ -83,7 +96,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         # print(form.instance.group_to_post)
-        # form.instance.group_to_post = self.request.current_group???
+        # form.instance.group_to_post = self.request.current_group????
         return super().form_valid(form)
 
 
