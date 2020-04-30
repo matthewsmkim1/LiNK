@@ -1,0 +1,21 @@
+{% extends "journal/base.html" %}
+{% block content %}
+
+<div style="
+    -webkit-column-count: 3;
+       -moz-column-count: 3;
+            column-count: 3;">
+{% for post in posts %}
+        {% if post.image != 'NULL' %}
+
+            <article class="media content-section" style="background: none; border:none;">
+              <div class="media-body" style="text-align:center;">
+                  <img style"margin-bottom: 20px; display: block;"  style="width: 100%;height: 100%;" src="{{ post.image.url }}">
+
+                 <video class="post-photos" src="{{ post.video.url }}" controls></video>
+              </div>
+            </article>
+        {% endif %}
+{% endfor %}
+</div>
+{% endblock content %}
