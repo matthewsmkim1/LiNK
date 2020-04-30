@@ -16,6 +16,7 @@ import Link from "@material-ui/core/Link";
 import Footer from "./Footer";
 import TopBar from "./TopBar";
 import Copyright from "./CopyRight";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -53,7 +54,7 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const Entries = (props) => {
   const classes = useStyles();
-
+  console.log(props.zipped);
   return (
     <React.Fragment>
       <CssBaseline />
@@ -99,7 +100,7 @@ const Entries = (props) => {
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map((card) => (
+            {props.zipped.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
@@ -109,12 +110,9 @@ const Entries = (props) => {
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {card[1]}
                     </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
-                    </Typography>
+                    <Typography>{card[2]}</Typography>
                   </CardContent>
                   <CardActions>
                     <Button size="small" color="primary">

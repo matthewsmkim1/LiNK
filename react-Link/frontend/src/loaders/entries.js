@@ -1,9 +1,14 @@
-import App from "../components/App";
 import React from "react";
 import ReactDOM from "react-dom";
-import RegistrationForm from "../components/auth/Registration";
+import Entries from "../components/layout/Entries";
+
+var new_arr = [];
+arrTop.map((element, index) => {
+  new_arr.push([element, arrBottom[index]]);
+});
+
 ReactDOM.render(
-  <RegistrationForm />,
+  <Entries zipped={new_arr} />,
 
   document.getElementById("app")
 );

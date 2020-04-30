@@ -33,7 +33,7 @@ def user_search(request):
 
 class PostListView(ListView):
     model = Post
-    template_name = 'journal/home.html'  # <app>/<model>_<viewtype>.html
+    template_name = 'frontend/user_posts.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 5

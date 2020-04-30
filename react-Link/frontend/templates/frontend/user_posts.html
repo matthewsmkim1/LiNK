@@ -16,7 +16,21 @@
     <div id="app"></div>
     <div id="modal"></div>
     {% csrf_token %}
+    <div></div>
     {% load static %}
-    <script src="{% static 'frontend/main.js' %}"></script>
+    <script>
+      var arrTop = [];
+      var arrBottom = [];
+      var t = "";
+      var q = "";
+      {% for post in posts %}
+      t = "{{post.title}}";
+      q = "{{post.content}}"
+      arrTop.push(t);
+      arrBottom.push(q);
+      {% endfor %}
+    </script>
+    <script src="{% static 'frontend/dumb.js' %}"></script>
+    <script src="{% static 'frontend/entries.js' %}"></script>
   </body>
 </html>
