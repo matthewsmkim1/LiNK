@@ -1,14 +1,34 @@
 {% extends "journal/base.html" %}
+<div></div>
 {% load crispy_forms_tags %}
+<div></div>
 {% block content %}
-    <div class="content-section">
-        <form method="POST" enctype="multipart/form-data" class="postForm">
-            {% csrf_token %}
-            {{ change_group_form|crispy }}
+<div class="content-section">
+  <form method="POST" enctype="multipart/form-data" class="postForm">
+    {% csrf_token %}
 
-            <div class="form-group">
-                <button id="postButton" class="btn btn-outline-info submitButton" type="submit">Change Group</button>
-            </div>
-        </form>
+    <select
+      name="current_group_for_user"
+      required
+      id="id_current_group_for_user"
+    >
+      <option value>------</option>
+
+      <div></div>
+      {% for group, val in groups_list %}
+      <option value="{{val}}">{{group}}</option>
+      {% endfor %}
+    </select>
+
+    <div class="form-group">
+      <button
+        id="postButton"
+        class="btn btn-outline-info submitButton"
+        type="submit"
+      >
+        Change Group
+      </button>
     </div>
+  </form>
+</div>
 {% endblock %}

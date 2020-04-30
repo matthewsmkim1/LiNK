@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'frontend',
     'groups',
     'journal.apps.JournalConfig',
     'users.apps.UsersConfig',
