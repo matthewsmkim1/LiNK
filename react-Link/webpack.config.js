@@ -17,6 +17,7 @@ module.exports = {
     register: "./frontend/src/loaders/register.js",
     login: "./frontend/src/loaders/login.js",
     createEntry: "./frontend/src/loaders/create_entry.js",
+    entries: "./frontend/src/loaders/entries.js",
   },
   output: {
     filename: "[name].js",
